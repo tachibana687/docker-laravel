@@ -15,10 +15,9 @@ class CreateVotingsTable extends Migration
     {
         Schema::create('votings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tag1_id')->constrained('tags')->onDelete('cascade');
-            $table->foreignId('tag2_id')->constrained('tags')->onDelete('cascade');
-            $table->integer('tag1_num');
-            $table->integer('tag2_num');
+            $table->foreignId('opponent_tag_id')->constrained('tags')->onDelete('cascade');
+            $table->integer('opponent_num');
+            $table->integer('num');
             $table->dateTime('expiration_date');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
