@@ -17,6 +17,8 @@ class CreateVotingsTable extends Migration
             $table->id();
             $table->foreignId('tag1_id')->constrained('tags')->onDelete('cascade');
             $table->foreignId('tag2_id')->constrained('tags')->onDelete('cascade');
+            $table->integer('tag1_num');
+            $table->integer('tag2_num');
             $table->dateTime('expiration_date');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

@@ -15,7 +15,7 @@ class CreateVisualDictionariesTable extends Migration
     {
         Schema::create('visual_dictionaries', function (Blueprint $table) {
             $table->id();
-            $table->string('dictionary-name');
+            $table->string('dictionary_name');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

@@ -21,7 +21,7 @@ class CreateCreaturesTable extends Migration
             $table->string('detail');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('voting_id')->constrained()->nullable()->onDelete('cascade');
-            $table->integer('bookmark');
+            $table->integer('bookmark')->default(0);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
