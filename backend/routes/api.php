@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\DictionaryController;
+use App\Http\Controllers\Api\CreatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +32,9 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::resource('dictionary', DictionaryController::class)->except([
         'create', 'edit'
+    ]);
+
+    Route::resource('creature', CreatureController::class)->only([
+        'show', 'update', 'destroy'
     ]);
 });
