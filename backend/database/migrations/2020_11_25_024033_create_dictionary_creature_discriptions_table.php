@@ -15,7 +15,7 @@ class CreateDictionaryCreatureDiscriptionsTable extends Migration
     {
         Schema::create('dictionary_creature_discriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dictionary_id')->constrained()->onDelete('cascade');
+            $table->foreignId('dictionary_id')->constrained('visual_dictionaries')->onDelete('cascade');
             $table->foreignId('creature_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
