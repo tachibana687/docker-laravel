@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\DictionaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +24,12 @@ use App\Http\Controllers\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->group(function() {
+    Route::resource('post', PostController::class)->only([
+        'show', 'store'
+    ]);
 
-Route::group(['middleware' => ['api']], function(){
-    Route::resource('post', 'Api\PostController', ['except' => ['index', 'create', 'edit', 'update', 'destroy']]);
-});
-
-Route::group(['middleware' => ['api']], function(){
-    Route::resource('dictionary', 'Api\DictionaryController', ['except' => ['create', 'edit']]);
+    Route::resource('dictionary', DictionaryController::class)->except([
+        'create', 'edit'
+    ]);
 });
