@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Creature extends Model
 {
     use HasFactory;
+
+    public function old_votings()
+    {
+        return $this->hasMany(OldVoting::class);
+    }
 }

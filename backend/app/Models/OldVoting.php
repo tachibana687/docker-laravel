@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class OldVoting extends Model
 {
     use HasFactory;
+
+    public function creatures()
+    {
+        return $this->belongsTo(Creature::class);
+    }
 }
