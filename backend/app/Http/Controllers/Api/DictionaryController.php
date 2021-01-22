@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\VisualDictionary;
 use App\Models\Creature;
+use App\Http\Resources\DictionaryResource;
+use App\Http\Resources\CreatureListResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +15,7 @@ class DictionaryController extends Controller
     public function index() {
         $user = Auth::id();
         $dictionaries = VisualDictionary::where('user_id', $user)->get();
-        return $dictionaries;
+        return DictionaryResource::collection($dictionaries);
     }
 
     public function show($id)
@@ -24,7 +26,7 @@ class DictionaryController extends Controller
                     ->where('dictionary_id', $id)
                     ->get();
 
-        return $creatures;
+        return CreatureListResource::collection($creatures);
     }
 
     public function store(Request $request) {
